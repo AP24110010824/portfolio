@@ -1,34 +1,48 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Education from './components/Education';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Education from './components/Education';
 import Achievements from './components/Achievements';
-import DynamicSection from './components/DynamicSection';
 import Contact from './components/Contact';
+import Admin from './components/Admin';
+import './App.css';
 
 function App() {
   const [activeCategory, setActiveCategory] = useState('All');
 
-  return (
+  const MainPortfolio = () => (
     <>
       <Navbar />
       <main>
-        <Hero setActiveCategory={setActiveCategory} />
+        <Hero />
         <About />
-        <Education />
         <Skills />
-        <Achievements />
         <Projects activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
-        <DynamicSection />
+        <Education />
+        <Achievements />
         <Contact />
       </main>
-      <footer style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border-color)' }}>
-        <p>&copy; {new Date().getFullYear()} My Portfolio. Built with MERN.</p>
+      <footer className="footer">
+        <div className="container">
+          <p>© {new Date().getFullYear()} Sabbi Rahul Revanth. Built with React & Framer Motion.</p>
+        </div>
       </footer>
     </>
+  );
+
+  return (
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<MainPortfolio />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

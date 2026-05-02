@@ -1,189 +1,161 @@
 .hero-section {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: 4rem; /* For navbar */
+  padding-top: 5rem;
+  background: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
 }
 
-.orbital-container {
-  position: relative;
-  width: 500px;
-  height: 500px;
+.hero-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 4rem;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-color);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.04em;
+}
+
+.text-accent {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-main);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  max-width: 550px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.hero-socials {
+  display: flex;
+  gap: 1.5rem;
+  color: var(--text-muted);
+}
+
+.hero-socials a:hover {
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* Orbital Visuals */
+.hero-visual {
+  flex: 1;
+  display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  align-items: center;
 }
 
-/* Rotating Orbits */
-.orbit-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 1px dashed rgba(255, 255, 255, 0.15);
-}
-
-.ring-1 {
-  width: 400px;
-  height: 400px;
-  animation: spinRight 30s linear infinite;
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgba(67, 97, 238, 0.3);
-}
-
-.ring-2 {
-  width: 280px;
-  height: 280px;
-  animation: spinLeft 25s linear infinite;
-}
-
-.ring-3 {
-  width: 550px;
-  height: 550px;
-  animation: spinRight 45s linear infinite;
-  border-color: rgba(255, 255, 255, 0.05);
-}
-
-/* Center Avatar */
-.center-avatar-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  padding: 5px;
-  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
-}
-
-.center-avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--bg-color);
-  z-index: 2;
+.avatar-wrapper {
   position: relative;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-image {
+  width: 180px;
+  height: 180px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .avatar-glow {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--accent-color);
-  filter: blur(20px);
-  opacity: 0.6;
-  z-index: 1;
-  animation: pulse 3s infinite alternate;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+  opacity: 0.2;
+  filter: blur(40px);
 }
 
-/* Orbital Nodes */
-.orbit-node {
+.avatar-ring {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100px;
-  height: 100px;
+  width: 260px;
+  height: 260px;
+  border: 1px solid var(--border-color);
   border-radius: 50%;
-  z-index: 20;
-  cursor: pointer;
-  text-decoration: none;
 }
 
-.orbit-node-content {
+.orbiting-icon {
+  position: absolute;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+}
+
+.icon-inner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  background: rgba(10, 10, 10, 0.8);
-  border: 1px solid rgba(67, 97, 238, 0.5);
-  backdrop-filter: blur(5px);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.orbit-node:hover .orbit-node-content {
-  transform: scale(1.15);
-  background: rgba(67, 97, 238, 0.2);
-  border-color: var(--accent-color);
-  box-shadow: 0 0 20px rgba(67, 97, 238, 0.4);
-}
-
-/* Fix for hover scale conflicting with inline transform translate */
-.orbit-node:hover .node-icon {
-  transform: scale(1.2);
-}
-
-.node-icon {
-  font-size: 1.8rem;
-  margin-bottom: 0.2rem;
-  transition: transform 0.3s ease;
-}
-
-.node-name {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-main);
-  line-height: 1.1;
-}
-
-/* Hero Text */
-.hero-text-content {
-  text-align: center;
-  margin-top: 2rem;
-  z-index: 10;
-}
-
-.hero-title {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-}
-
-.hero-desc {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* Animations */
-@keyframes spinRight {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes spinLeft {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(-360deg); }
-}
-
-@keyframes pulse {
-  0% { opacity: 0.4; transform: scale(1); }
-  100% { opacity: 0.8; transform: scale(1.1); }
-}
-
-@media (max-width: 768px) {
-  .orbital-container {
-    transform: scale(0.65);
-    margin-bottom: 0;
+@media (max-width: 1024px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
   }
-  .hero-title {
-    font-size: 2.2rem;
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  .hero-title { font-size: 3.5rem; }
+  .avatar-wrapper { width: 300px; height: 300px; }
+  .hero-socials { justify-content: center; }
 }
