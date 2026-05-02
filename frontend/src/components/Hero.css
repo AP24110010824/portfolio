@@ -1,0 +1,189 @@
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 4rem; /* For navbar */
+}
+
+.orbital-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* Rotating Orbits */
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.ring-1 {
+  width: 400px;
+  height: 400px;
+  animation: spinRight 30s linear infinite;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(67, 97, 238, 0.3);
+}
+
+.ring-2 {
+  width: 280px;
+  height: 280px;
+  animation: spinLeft 25s linear infinite;
+}
+
+.ring-3 {
+  width: 550px;
+  height: 550px;
+  animation: spinRight 45s linear infinite;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Center Avatar */
+.center-avatar-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+}
+
+.center-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg-color);
+  z-index: 2;
+  position: relative;
+}
+
+.avatar-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--accent-color);
+  filter: blur(20px);
+  opacity: 0.6;
+  z-index: 1;
+  animation: pulse 3s infinite alternate;
+}
+
+/* Orbital Nodes */
+.orbit-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  z-index: 20;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.orbit-node-content {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(67, 97, 238, 0.5);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.orbit-node:hover .orbit-node-content {
+  transform: scale(1.15);
+  background: rgba(67, 97, 238, 0.2);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(67, 97, 238, 0.4);
+}
+
+/* Fix for hover scale conflicting with inline transform translate */
+.orbit-node:hover .node-icon {
+  transform: scale(1.2);
+}
+
+.node-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.2rem;
+  transition: transform 0.3s ease;
+}
+
+.node-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+/* Hero Text */
+.hero-text-content {
+  text-align: center;
+  margin-top: 2rem;
+  z-index: 10;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Animations */
+@keyframes spinRight {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spinLeft {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; transform: scale(1); }
+  100% { opacity: 0.8; transform: scale(1.1); }
+}
+
+@media (max-width: 768px) {
+  .orbital-container {
+    transform: scale(0.65);
+    margin-bottom: 0;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+}
